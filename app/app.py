@@ -2,11 +2,10 @@ from fastapi.applications import FastAPI
 
 from fastapi.middleware.cors import CORSMiddleware
 from toolz import pipe
-
-
 from app.routes import register_routers
 from app.infrastructure.environment import Settings
 from app.infrastructure.db import create_db_and_tables, init_db
+
 
 
 def create_instance(settings: Settings) -> FastAPI:
@@ -24,6 +23,8 @@ def create_instance(settings: Settings) -> FastAPI:
 def init_database(app: FastAPI) -> FastAPI:
     # TODO init databases if applicable
     init_db()
+    # app.state.connection = make_conection()
+
     return app
 
 def register_events(app: FastAPI) -> FastAPI:
